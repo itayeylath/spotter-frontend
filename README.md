@@ -6,6 +6,8 @@
 - npm or yarn
 - Docker and Docker Compose (for containerized development)
 - Expo Go app (for testing on mobile devices)
+- iOS Simulator (for iOS development)
+- Android Studio (for Android development)
 
 ## Getting Started
 
@@ -82,31 +84,63 @@
 - `npm run web` - Run on web
 - `npm test` - Run tests
 - `npm run lint` - Run ESLint
-- `npm run build` - Build the app
 
-## Deployment
+## Development Workflow
 
-### Web Deployment
-
-1. Build the web version:
+1. Start the development server:
 
    ```bash
-   npm run build:web
+   npm start
    ```
 
-2. Deploy the contents of the `web-build` directory to your hosting service.
+2. Choose your target platform:
 
-### Mobile Deployment
+   - Press `w` for web
+   - Press `i` for iOS
+   - Press `a` for Android
+   - Scan QR code with Expo Go app for physical device
 
-1. Configure the app.json with your app details
-2. Build the app:
+3. Make changes to your code:
+   - Changes will automatically reload in the development environment
+   - Hot reloading is enabled by default
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Metro Bundler Port Conflict**
 
    ```bash
-   expo build:android
-   expo build:ios
+   # Kill the process using port 19000
+   lsof -i :19000
+   kill -9 <PID>
    ```
 
-3. Submit to respective app stores
+2. **iOS Simulator Not Starting**
+
+   - Ensure Xcode is installed
+   - Open iOS Simulator manually before running the app
+
+3. **Android Emulator Not Starting**
+   - Ensure Android Studio is installed
+   - Open Android Emulator manually before running the app
+
+### Docker Issues
+
+1. **Port Already in Use**
+
+   ```bash
+   # Stop existing containers
+   docker-compose down
+   # Start fresh
+   docker-compose up --build
+   ```
+
+2. **Container Not Updating**
+   ```bash
+   # Rebuild the container
+   docker-compose up --build --force-recreate
+   ```
 
 ## Contributing
 
