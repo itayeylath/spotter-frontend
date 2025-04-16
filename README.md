@@ -1,1 +1,1 @@
-# spotter-frontend
+Spotter Frontend
